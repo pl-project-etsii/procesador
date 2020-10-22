@@ -1,0 +1,3 @@
+VARIABLES
+i,max,min:NUM;
+s:SEQ(NUM);
