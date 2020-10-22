@@ -1,4 +1,4 @@
-// Generated from C:/Users/casto/IdeaProjects/procesador/src\Anasint.g4 by ANTLR 4.8
+// Generated from /root/IdeaProjects/procesador/src/Anasint.g4 by ANTLR 4.8
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -33,4 +33,40 @@ public interface AnasintVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitTipo(Anasint.TipoContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Anasint#asignaciones}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAsignaciones(Anasint.AsignacionesContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Anasint#asignacion}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAsignacion(Anasint.AsignacionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Anasint#expresion}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpresion(Anasint.ExpresionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Anasint#expresion_entera}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpresion_entera(Anasint.Expresion_enteraContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Anasint#expresion_logica}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpresion_logica(Anasint.Expresion_logicaContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Anasint#expresion_no_elemental}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpresion_no_elemental(Anasint.Expresion_no_elementalContext ctx);
 }
