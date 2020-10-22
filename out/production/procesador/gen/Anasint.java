@@ -142,7 +142,6 @@ public class Anasint extends Parser {
 
 	public static class VariablesContext extends ParserRuleContext {
 		public TerminalNode VARIABLES() { return getToken(Anasint.VARIABLES, 0); }
-		public TerminalNode PyC() { return getToken(Anasint.PyC, 0); }
 		public List<Lista_variablesContext> lista_variables() {
 			return getRuleContexts(Lista_variablesContext.class);
 		}
@@ -177,22 +176,20 @@ public class Anasint extends Parser {
 			{
 			setState(11);
 			match(VARIABLES);
-			setState(15);
+			setState(13); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==IDENT) {
+			do {
 				{
 				{
 				setState(12);
 				lista_variables();
 				}
 				}
-				setState(17);
+				setState(15); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			}
-			setState(18);
-			match(PyC);
+			} while ( _la==IDENT );
 			}
 		}
 		catch (RecognitionException re) {
@@ -216,6 +213,7 @@ public class Anasint extends Parser {
 		public TipoContext tipo() {
 			return getRuleContext(TipoContext.class,0);
 		}
+		public TerminalNode PyC() { return getToken(Anasint.PyC, 0); }
 		public Lista_variablesContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -239,29 +237,31 @@ public class Anasint extends Parser {
 		Lista_variablesContext _localctx = new Lista_variablesContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_lista_variables);
 		try {
-			setState(26);
+			setState(25);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(20);
+				setState(17);
 				match(IDENT);
-				setState(21);
+				setState(18);
 				match(COMA);
-				setState(22);
+				setState(19);
 				lista_variables();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(23);
+				setState(20);
 				match(IDENT);
-				setState(24);
+				setState(21);
 				match(DP);
-				setState(25);
+				setState(22);
 				tipo();
+				setState(23);
+				match(PyC);
 				}
 				break;
 			}
@@ -309,33 +309,33 @@ public class Anasint extends Parser {
 		TipoContext _localctx = new TipoContext(_ctx, getState());
 		enterRule(_localctx, 6, RULE_tipo);
 		try {
-			setState(35);
+			setState(34);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case SEQ:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(28);
+				setState(27);
 				match(SEQ);
-				setState(29);
+				setState(28);
 				match(PA);
-				setState(30);
+				setState(29);
 				tipo();
-				setState(31);
+				setState(30);
 				match(PC);
 				}
 				break;
 			case NUM:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(33);
+				setState(32);
 				match(NUM);
 				}
 				break;
 			case LOG:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(34);
+				setState(33);
 				match(LOG);
 				}
 				break;
@@ -355,17 +355,17 @@ public class Anasint extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\25(\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\4\5\t\5\3\2\3\2\3\2\3\3\3\3\7\3\20\n\3\f\3\16\3\23\13\3\3\3"+
-		"\3\3\3\4\3\4\3\4\3\4\3\4\3\4\5\4\35\n\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\5"+
-		"\5&\n\5\3\5\2\2\6\2\4\6\b\2\2\2\'\2\n\3\2\2\2\4\r\3\2\2\2\6\34\3\2\2\2"+
-		"\b%\3\2\2\2\n\13\5\4\3\2\13\f\7\2\2\3\f\3\3\2\2\2\r\21\7\7\2\2\16\20\5"+
-		"\6\4\2\17\16\3\2\2\2\20\23\3\2\2\2\21\17\3\2\2\2\21\22\3\2\2\2\22\24\3"+
-		"\2\2\2\23\21\3\2\2\2\24\25\7\16\2\2\25\5\3\2\2\2\26\27\7\13\2\2\27\30"+
-		"\7\17\2\2\30\35\5\6\4\2\31\32\7\13\2\2\32\33\7\20\2\2\33\35\5\b\5\2\34"+
-		"\26\3\2\2\2\34\31\3\2\2\2\35\7\3\2\2\2\36\37\7\t\2\2\37 \7\f\2\2 !\5\b"+
-		"\5\2!\"\7\r\2\2\"&\3\2\2\2#&\7\6\2\2$&\7\b\2\2%\36\3\2\2\2%#\3\2\2\2%"+
-		"$\3\2\2\2&\t\3\2\2\2\5\21\34%";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\25\'\4\2\t\2\4\3"+
+		"\t\3\4\4\t\4\4\5\t\5\3\2\3\2\3\2\3\3\3\3\6\3\20\n\3\r\3\16\3\21\3\4\3"+
+		"\4\3\4\3\4\3\4\3\4\3\4\3\4\5\4\34\n\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\5\5"+
+		"%\n\5\3\5\2\2\6\2\4\6\b\2\2\2&\2\n\3\2\2\2\4\r\3\2\2\2\6\33\3\2\2\2\b"+
+		"$\3\2\2\2\n\13\5\4\3\2\13\f\7\2\2\3\f\3\3\2\2\2\r\17\7\7\2\2\16\20\5\6"+
+		"\4\2\17\16\3\2\2\2\20\21\3\2\2\2\21\17\3\2\2\2\21\22\3\2\2\2\22\5\3\2"+
+		"\2\2\23\24\7\13\2\2\24\25\7\17\2\2\25\34\5\6\4\2\26\27\7\13\2\2\27\30"+
+		"\7\20\2\2\30\31\5\b\5\2\31\32\7\16\2\2\32\34\3\2\2\2\33\23\3\2\2\2\33"+
+		"\26\3\2\2\2\34\7\3\2\2\2\35\36\7\t\2\2\36\37\7\f\2\2\37 \5\b\5\2 !\7\r"+
+		"\2\2!%\3\2\2\2\"%\7\6\2\2#%\7\b\2\2$\35\3\2\2\2$\"\3\2\2\2$#\3\2\2\2%"+
+		"\t\3\2\2\2\5\21\33$";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
