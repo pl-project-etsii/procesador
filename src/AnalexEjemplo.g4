@@ -1,4 +1,4 @@
-lexer grammar Analex;
+lexer grammar AnalexEjemplo;
 BLANCO: ' ' ->skip;
 TABULADOR: '\t'->skip;
 FIN_LINEA: '\r'?'\n' ->skip;

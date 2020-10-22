@@ -1,7 +1,7 @@
 // Analizador sintáctico lenguaje expr
-parser grammar Anasint;
+parser grammar AnasintEjemplo;
 options{
- tokenVocab=Analex;
+ tokenVocab=AnalexEjemplo;
 }
 sentencia : variables expr EOF;
 variables : decl_vars PyC ;

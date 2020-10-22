@@ -1,4 +1,4 @@
-// Generated from C:/Users/casto/IdeaProjects/procesador/src\Anasint.g4 by ANTLR 4.8
+// Generated from C:/Users/casto/IdeaProjects/procesador/src\AnasintEjemplo.g4 by ANTLR 4.8
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
