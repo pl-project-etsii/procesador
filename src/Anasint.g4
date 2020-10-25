@@ -30,3 +30,18 @@ expresion_logica : TRUE
 
 //Lo vemos esta tarde (?)
 expresion_no_elemental : VAR;
+
+
+// Instrucciones: iteracion
+stat:   variables FIN_LINEA         // printExpr
+    |   IDENT IGUAL variables PyC         // assign
+    |   loop FIN_LINEA                // whileLoop
+  //  |   relational FIN_LINEA          // relat
+    |   FIN_LINEA                     // blank
+    ;
+
+
+relational:     variables op=(MAYORQ|MENORQ) variables     // GreaterEqual
+    ;
+
+loop: WHILE PA expresion_logica PA FIN_LINEA? BA stat* BC ;  // while
