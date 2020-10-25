@@ -2,7 +2,7 @@ parser grammar Anasint;
 options{
  tokenVocab=Analex;
 }
-sentencia : variables instrucciones EOF; //añadir secciones de subprogramas e instrucciones
+sentencia : variables asignaciones instrucciones EOF; //añadir secciones de subprogramas e instrucciones
 variables : VARIABLES (lista_variables)+;
 lista_variables : IDENT COMA lista_variables
     | IDENT DP tipo PyC
@@ -45,16 +45,14 @@ secuencia: (expresion_entera | expresion_logica) (COMA expresion_entera | expres
 
 // Instrucciones: iteracion
 
-instrucciones: INSTRUCCIONES (instruccion)*;
+instrucciones: INSTRUCCIONES (instruccion)+;
 
-instruccion: asignaciones | iteraciones ;
+instruccion: iteraciones ;
 
 iteraciones: ITERACIONES (iteracion)* ;
 
-iteracion:   variables      // printExpr
-    |   asignaciones           // assign
-    |   loop                // whileLoop
+iteracion:  WHILE PA expresion_logica PA iteracion
+    | BA iteracion* BC
     ;
 
-loop: WHILE PA expresion_logica PA ? BA iteracion* BC ;  // while
 

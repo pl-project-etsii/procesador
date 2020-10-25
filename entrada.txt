@@ -1,6 +1,13 @@
 VARIABLES
-x: NUM, y: NUM;
+x: NUM;
+y: NUM;
 
-while (x<y) {
+ASIGNACIONES
 x = 2;
+y = 0;
+
+INSTRUCCIONES
+ITERACIONES
+while (true){
+  z: NUM;
 }
