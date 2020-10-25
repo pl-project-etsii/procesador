@@ -1,4 +1,4 @@
-// Generated from /root/IdeaProjects/procesador/src/Anasint.g4 by ANTLR 4.8
+// Generated from /home/bea/IdeaProjects/procesador/src/Anasint.g4 by ANTLR 4.8
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -77,6 +77,16 @@ public interface AnasintListener extends ParseTreeListener {
 	 */
 	void exitExpresion(Anasint.ExpresionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link Anasint#funcion_entera}.
+	 * @param ctx the parse tree
+	 */
+	void enterFuncion_entera(Anasint.Funcion_enteraContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Anasint#funcion_entera}.
+	 * @param ctx the parse tree
+	 */
+	void exitFuncion_entera(Anasint.Funcion_enteraContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link Anasint#expresion_entera}.
 	 * @param ctx the parse tree
 	 */
@@ -106,4 +116,44 @@ public interface AnasintListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpresion_no_elemental(Anasint.Expresion_no_elementalContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link Anasint#secuencia}.
+	 * @param ctx the parse tree
+	 */
+	void enterSecuencia(Anasint.SecuenciaContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Anasint#secuencia}.
+	 * @param ctx the parse tree
+	 */
+	void exitSecuencia(Anasint.SecuenciaContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link Anasint#stat}.
+	 * @param ctx the parse tree
+	 */
+	void enterStat(Anasint.StatContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Anasint#stat}.
+	 * @param ctx the parse tree
+	 */
+	void exitStat(Anasint.StatContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link Anasint#relational}.
+	 * @param ctx the parse tree
+	 */
+	void enterRelational(Anasint.RelationalContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Anasint#relational}.
+	 * @param ctx the parse tree
+	 */
+	void exitRelational(Anasint.RelationalContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link Anasint#loop}.
+	 * @param ctx the parse tree
+	 */
+	void enterLoop(Anasint.LoopContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Anasint#loop}.
+	 * @param ctx the parse tree
+	 */
+	void exitLoop(Anasint.LoopContext ctx);
 }

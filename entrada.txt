@@ -1,2 +1,6 @@
-x booleano, y entero;
-NO x + y - 3
+VARIABLES
+x: NUM, y: NUM;
+
+while (x<y) {
+x = 2;
+}

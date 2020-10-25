@@ -1,4 +1,4 @@
-// Generated from /root/IdeaProjects/procesador/src/Anasint.g4 by ANTLR 4.8
+// Generated from /home/bea/IdeaProjects/procesador/src/Anasint.g4 by ANTLR 4.8
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -52,6 +52,12 @@ public interface AnasintVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpresion(Anasint.ExpresionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link Anasint#funcion_entera}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFuncion_entera(Anasint.Funcion_enteraContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link Anasint#expresion_entera}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -69,4 +75,28 @@ public interface AnasintVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitExpresion_no_elemental(Anasint.Expresion_no_elementalContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Anasint#secuencia}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSecuencia(Anasint.SecuenciaContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Anasint#stat}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStat(Anasint.StatContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Anasint#relational}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRelational(Anasint.RelationalContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Anasint#loop}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLoop(Anasint.LoopContext ctx);
 }

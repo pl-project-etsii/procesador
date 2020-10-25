@@ -2,34 +2,46 @@ parser grammar Anasint;
 options{
  tokenVocab=Analex;
 }
-sentencia : variables EOF; //añadir secciones de subprogramas e instrucciones
+sentencia : variables asignaciones EOF; //añadir secciones de subprogramas e instrucciones
 variables : VARIABLES (lista_variables)+;
 lista_variables : IDENT COMA lista_variables
     | IDENT DP tipo PyC
     ;
+
 tipo : SEQ PA tipo PC //al ser recursivo se podría dar el caso de una secuencia dentro de una secuencia?
     |NUM
     |LOG
     ;
-
-//Asignaciones? Se indica que la declaracion de variable no asigna valor a la misma
+//NO SE ADMITEN ASIGNACIONES SIN VALOR A UNA VARIABLE
+//Asignaciones multiples? Interpretacion parelela o secuencial? como asigno la prioridad a la operacion POR???
 asignaciones: ASIGNACIONES (asignacion)* ;
-asignacion : VAR IGUAL expresion Pyc;
 
-//expresiones?
+asignacion : IDENT (COMA IDENT)* IGUAL expresion PyC;
+
 expresion : expresion_entera | expresion_logica | expresion_no_elemental ;
-/*Expresion no elemental o secuencia? luego se distinguen 2 tipos de secuencias, una de ellas creo que es de un nivel
-más alto pero aun así deberíamos de tenerla en cuenta? */
 
-expresion_entera : NUMERO;
-
-//En el lexico las he llamado TRUE Y FALSE si se prefiere poner cierto y falso se cambian en analex
+funcion_entera: POR
+    | MAS
+    | MENOS
+    ;
+expresion_entera : NUMERO
+    | IDENT
+    | funcion_entera PA expresion_entera PC
+    | (COMA expresion_entera)*
+    ;
 expresion_logica : TRUE
     | FALSE
+    | NO PA (expresion_logica) PC
     ;
 
 //Lo vemos esta tarde (?)
 expresion_no_elemental : VAR;
+
+/*expresion_no_elemental : CA (secuencia) CC //Si pongo (secuencia)? me da error (hablar de las funciones)
+    | IDENT
+    ;*/
+
+secuencia: (expresion_entera | expresion_logica) (COMA expresion_entera | expresion_logica)* ;
 
 
 // Instrucciones: iteracion
@@ -45,3 +57,4 @@ relational:     variables op=(MAYORQ|MENORQ) variables     // GreaterEqual
     ;
 
 loop: WHILE PA expresion_logica PA FIN_LINEA? BA stat* BC ;  // while
+
