@@ -7,5 +7,7 @@ y = 0;
 
 INSTRUCCIONES
 mientras (T) hacer{
-  z: NUM;
+  max=s[i];
+  y = 3;
 }
+fmientras
