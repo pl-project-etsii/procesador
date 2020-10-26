@@ -47,11 +47,11 @@ secuencia: (expresion_entera | expresion_logica) (COMA expresion_entera | expres
 
 instrucciones: INSTRUCCIONES (instruccion)+;
 
-instruccion: iteraciones ;
+instruccion: iteraciones;
 
 iteraciones: ITERACIONES (iteracion)* ;
 
-iteracion:  WHILE PA expresion_logica PA iteracion
+iteracion:  WHILE PA expresion_logica PA
     | BA iteracion* BC
     ;
 
