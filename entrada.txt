@@ -2,12 +2,10 @@ VARIABLES
 x: NUM;
 y: NUM;
 
-ASIGNACIONES
 x = 2;
 y = 0;
 
 INSTRUCCIONES
-ITERACIONES
-while (true){
+mientras (T) hacer{
   z: NUM;
 }
