@@ -51,8 +51,9 @@ instruccion: iteraciones;
 
 iteraciones: ITERACIONES (iteracion)* ;
 
-iteracion:  WHILE PA expresion_logica PA
+iteracion:  MIENTRAS PA expresion_logica PC HACER
     | BA iteracion* BC
+    | FMIENTRAS
     ;
 
 
