@@ -1,11 +1,13 @@
 VARIABLES
 x: NUM;
 y: NUM;
-
-x = 2;
-y = 0;
+z: SEQ(NUM);
+a,b:LOG;
 
 INSTRUCCIONES
+x,y = ((2 * 3) + 4) + 3, 2+(-5);
+z = [];
+a = F;
 mientras (T) hacer{
   max=s[i];
   y = 3;

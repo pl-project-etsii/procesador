@@ -15,7 +15,7 @@ tipo : SEQ PA tipo PC //al ser recursivo se podría dar el caso de una secuencia
 
 //NO SE ADMITEN ASIGNACIONES SIN VALOR A UNA VARIABLE
 //Asignaciones multiples? Interpretacion parelela o secuencial? como asigno la prioridad a la operacion POR???
-asignaciones: ASIGNACIONES (asignacion)* ;
+asignaciones: INSTRUCCIONES asignacion* ;
 
 asignacion : IDENT (COMA IDENT)* IGUAL expresion (COMA expresion)* PyC;
 
