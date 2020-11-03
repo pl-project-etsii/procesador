@@ -2,7 +2,7 @@ parser grammar Anasint;
 options{
  tokenVocab=Analex;
 }
-sentencia : variables instrucciones EOF; //añadir secciones de subprogramas e instrucciones
+sentencia : variables instrucciones EOF; //añadir seccion de subprogramas
 
 variables : VARIABLES lista_variables*;
 lista_variables : IDENT COMA lista_variables
@@ -20,8 +20,7 @@ instruccion: iteracion
            | asignacion
            | condicional;
 
-//NO SE ADMITEN ASIGNACIONES SIN VALOR A UNA VARIABLE
-//Asignaciones multiples? Interpretacion parelela o secuencial? como asigno la prioridad a la operacion POR???
+//Asignaciones multiples? Interpretacion parelela o secuencial?
 asignacion : IDENT (COMA IDENT)* IGUAL expresion (COMA expresion)* PyC;
 
 expresion : expresion_no_elemental | expresion_entera | expresion_logica ;
@@ -37,13 +36,12 @@ expresion_entera : PA expresion_entera PC
     | IDENT
     ;
 
-
 expresion_logica : TRUE
     | FALSE
     | IDENT
     ;
 
-expresion_no_elemental : CA secuencia? CC //Si pongo (secuencia)? me da error (hablar de las funciones)
+expresion_no_elemental : CA (secuencia)? CC
     | IDENT
     ;
 
@@ -63,8 +61,8 @@ condicional: SI PA condicion PC ENTONCES
              FINSI
            ;
 condicion: NEGACION condicion
-         | condicion1 Y condicion
-         | condicion1 O condicion
+         | condicion Y condicion
+         | condicion O condicion
          | condicion1
          ;
 condicion1: expresion MAYORIGUAL expresion

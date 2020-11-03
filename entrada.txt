@@ -2,11 +2,13 @@ VARIABLES
 x: NUM;
 y: NUM;
 z: SEQ(NUM);
+s: SEQ(NUM);
 a,b:LOG;
 
 INSTRUCCIONES
 x,y = ((2 * 3) + 4) + 3, 2+(-5);
 z = [];
+s = [];
 a = F;
 si (x>y) entonces
     x = 4;
