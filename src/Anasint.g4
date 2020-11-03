@@ -14,9 +14,12 @@ tipo : SEQ PA tipo PC //al ser recursivo se podría dar el caso de una secuencia
     |LOG
     ;
 
+//Hay que añadir en instruccion los tipos de instrucciones disponibles
 instrucciones: INSTRUCCIONES instruccion*;
 instruccion: iteracion
-           | asignacion;
+           | asignacion
+           | condicional;
+
 //NO SE ADMITEN ASIGNACIONES SIN VALOR A UNA VARIABLE
 //Asignaciones multiples? Interpretacion parelela o secuencial? como asigno la prioridad a la operacion POR???
 asignacion : IDENT (COMA IDENT)* IGUAL expresion (COMA expresion)* PyC;
@@ -51,3 +54,23 @@ iteracion:  MIENTRAS PA expresion_logica PC HACER
     | BA iteracion* BC
     | FMIENTRAS
     ;
+
+// Instrucciones: condicional
+condicional: SI PA condicion PC ENTONCES
+                instruccion*
+             SINO?
+                instruccion*
+             FINSI
+           ;
+condicion: NEGACION condicion
+         | condicion1 Y condicion
+         | condicion1 O condicion
+         | condicion1
+         ;
+condicion1: expresion MAYORIGUAL expresion
+          | expresion MAYORQ expresion
+          | expresion MENORIGUAL expresion
+          | expresion MENORQ expresion
+          | expresion IGUALDAD expresion
+          | expresion DISTINTO expresion
+          ;
