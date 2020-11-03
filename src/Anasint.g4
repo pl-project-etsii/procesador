@@ -48,7 +48,7 @@ expresion_no_elemental : CA (secuencia)? CC
 secuencia: (expresion_entera | expresion_logica) (COMA expresion_entera | expresion_logica)* ;
 
 // Instrucciones: iteracion
-iteracion:  MIENTRAS PA expresion_logica PC HACER
+iteracion:  MIENTRAS PA expresion PC HACER
     | BA iteracion* BC
     | FMIENTRAS
     ;
@@ -63,12 +63,7 @@ condicional: SI PA condicion PC ENTONCES
 condicion: NEGACION condicion
          | condicion Y condicion
          | condicion O condicion
-         | condicion1
+         | expresion relacion_binaria expresion
          ;
-condicion1: expresion MAYORIGUAL expresion
-          | expresion MAYORQ expresion
-          | expresion MENORIGUAL expresion
-          | expresion MENORQ expresion
-          | expresion IGUALDAD expresion
-          | expresion DISTINTO expresion
-          ;
+
+relacion_binaria: MAYORIGUAL|MENORIGUAL|MAYOR|MENOR|IGUALDAD|DISTINTO;
