@@ -66,6 +66,8 @@ condicion: NEGACION condicion
          | condicion Y condicion
          | condicion O condicion
          | expresion relacion_binaria expresion
+         | CIERTO
+         | FALSO
          ;
 
 relacion_binaria: MAYORIGUAL|MENORIGUAL|MAYOR|MENOR|IGUALDAD|DISTINTO;

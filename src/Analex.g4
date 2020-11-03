@@ -17,6 +17,8 @@ FMIENTRAS: 'fmientras';
 SI : 'si';
 SINO : 'sino';
 ENTONCES : 'entonces';
+CIERTO : 'cierto';
+FALSO : 'falso';
 FINSI : 'fsi';
 TRUE : 'T';
 FALSE : 'F';
