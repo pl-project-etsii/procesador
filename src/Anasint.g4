@@ -41,14 +41,16 @@ expresion_logica : TRUE
     | IDENT
     ;
 
-expresion_no_elemental : CA (secuencia)? CC
+expresion_no_elemental : CA (secuencia)? CC //funcion vacia?
     | IDENT
     ;
 
-secuencia: (expresion_entera | expresion_logica) (COMA expresion_entera | expresion_logica)* ;
+secuencia: expresion_entera (COMA expresion_entera)*
+    |expresion_logica (COMA expresion_logica)*
+    ;
 
 // Instrucciones: iteracion
-iteracion:  MIENTRAS PA expresion PC HACER
+iteracion:  MIENTRAS PA expresion_logica PC HACER
     | BA iteracion* BC
     | FMIENTRAS
     ;
