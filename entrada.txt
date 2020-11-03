@@ -1,17 +1,11 @@
 VARIABLES
-x: NUM;
-y: NUM;
-z: SEQ(NUM);
-s: SEQ(NUM);
-a,b:LOG;
-
+SUBPROGRAMAS
+FUNCION mayor_que_5(NUM x) dev (LOG r)
+VARIABLES
 INSTRUCCIONES
-x,y = ((2 * 3) + 4) + 3, 2+(-5);
-z = [];
-s = [];
-a = F;
-
-mientras (T) hacer
-  max=s[i];
-  y = 3;
-fmientras
+si (x>5) entonces
+dev T
+sino
+dev F
+fsi
+FFUNCION

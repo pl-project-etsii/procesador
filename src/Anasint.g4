@@ -2,8 +2,10 @@ parser grammar Anasint;
 options{
  tokenVocab=Analex;
 }
-sentencia : variables instrucciones EOF; //añadir seccion de subprogramas
+sentencia: variables subprogramas instrucciones? EOF;
 
+
+//VARIABLES
 variables : VARIABLES lista_variables*;
 lista_variables : IDENT COMA lista_variables
     | IDENT DP tipo PyC
@@ -14,12 +16,28 @@ tipo : SEQ PA tipo PC //al ser recursivo se podría dar el caso de una secuencia
     |LOG
     ;
 
+//SUBPROGRAMAS
+declaracion: variables instrucciones;
+
+subprogramas : SUBPROGRAMAS (funciones)* (procedimientos)*;
+
+funciones: FUNCION IDENT(PA tipo IDENT(COMA tipo IDENT)* PC)? DEV (PA tipo IDENT(COMA tipo IDENT)* PC)
+            declaracion
+            FFUNCION;
+
+procedimientos: PROCEDIMIENTO IDENT(PA tipo IDENT(COMA tipo IDENT)* PC)
+                declaracion
+                FPROCEDIMIENTO;
+
+//INSTRUCCIONES
 //Hay que añadir en instruccion los tipos de instrucciones disponibles
 instrucciones: INSTRUCCIONES instruccion*;
 instruccion: iteracion
            | asignacion
-           | condicional;
+           | condicional
+           | devolucion;
 
+// Instrucciones: asignación
 //Asignaciones multiples? Interpretacion parelela o secuencial?
 asignacion : IDENT (COMA IDENT)* IGUAL expresion (COMA expresion)* PyC;
 
@@ -71,3 +89,7 @@ condicion: NEGACION condicion
          ;
 
 relacion_binaria: MAYORIGUAL|MENORIGUAL|MAYOR|MENOR|IGUALDAD|DISTINTO;
+
+//Instrucciones: devolución
+devolucion: DEV (IDENT)(COMA IDENT)* PYC
+            | DEV (TRUE|FALSE);
