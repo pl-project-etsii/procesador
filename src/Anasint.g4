@@ -91,5 +91,5 @@ condicion: NEGACION condicion
 relacion_binaria: MAYORIGUAL|MENORIGUAL|MAYOR|MENOR|IGUALDAD|DISTINTO;
 
 //Instrucciones: devolución
-devolucion: DEV (IDENT)(COMA IDENT)* PYC
+devolucion: DEV (IDENT)(COMA IDENT)* PyC
             | DEV (TRUE|FALSE);
