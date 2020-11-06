@@ -1,5 +1,13 @@
 PROGRAMA
 VARIABLES
+x: SEQ (NUM);
+
 SUBPROGRAMAS
+mostrar(x)
+
 INSTRUCCIONES
-dev T;
+si (x == 3) entonces
+max = s[i];
+sino
+x = 2 + 2;
+fsi

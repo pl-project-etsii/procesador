@@ -4,8 +4,6 @@ options{
 }
 programa: PROGRAMA variables subprogramas instrucciones EOF;
 
-
-
 //VARIABLES
 variables : VARIABLES lista_variables*;
 lista_variables : IDENT COMA lista_variables
@@ -28,7 +26,8 @@ funciones: FUNCION IDENT(PA tipo IDENT(COMA tipo IDENT)* PC)? DEV (PA tipo IDENT
 
 procedimientos: PROCEDIMIENTO IDENT(PA tipo IDENT(COMA tipo IDENT)* PC)
                 declaracion
-                FPROCEDIMIENTO;
+                FPROCEDIMIENTO
+                | MOSTRAR PA IDENT PC;
 
 //INSTRUCCIONES
 //Hay que añadir en instruccion los tipos de instrucciones disponibles
@@ -39,7 +38,6 @@ instruccion: iteracion
            | devolucion;
 
 // Instrucciones: asignación
-//Asignaciones multiples? Interpretacion parelela o secuencial?
 asignacion : IDENT (COMA IDENT)* IGUAL expresion (COMA expresion)* PyC;
 
 expresion : expresion_no_elemental | expresion_entera | expresion_logica ;
@@ -57,15 +55,14 @@ expresion_entera : PA expresion_entera PC
 
 expresion_logica : TRUE
     | FALSE
-    | IDENT
     ;
 
-expresion_no_elemental : CA (secuencia)? CC //funcion vacia?
-    | IDENT
+expresion_no_elemental : IDENT CA secuencia CC
+    | IDENT CA CC
     ;
 
 secuencia: expresion_entera (COMA expresion_entera)*
-    |expresion_logica (COMA expresion_logica)*
+    |expresion_logica
     ;
 
 // Instrucciones: iteracion
