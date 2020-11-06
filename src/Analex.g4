@@ -4,6 +4,7 @@ TABULADOR: '\t'->skip;
 FIN_LINEA: '\r'?'\n' ->skip;
 fragment DIGITO: [0-9];
 fragment LETRA:[a-zA-Z];
+PROGRAMA : 'PROGRAMA';
 NUM: 'NUM';
 VARIABLES: 'VARIABLES';
 ASIGNACIONES : 'ASIGNACIONES';

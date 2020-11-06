@@ -2,7 +2,8 @@ parser grammar Anasint;
 options{
  tokenVocab=Analex;
 }
-sentencia: variables subprogramas instrucciones? EOF;
+programa: PROGRAMA variables subprogramas instrucciones EOF;
+
 
 
 //VARIABLES
@@ -92,4 +93,4 @@ relacion_binaria: MAYORIGUAL|MENORIGUAL|MAYOR|MENOR|IGUALDAD|DISTINTO;
 
 //Instrucciones: devolución
 devolucion: DEV (IDENT)(COMA IDENT)* PyC
-            | DEV (TRUE|FALSE);
+            | DEV (TRUE|FALSE) PyC;

@@ -12,7 +12,7 @@ public class Principal {
         Analex analex = new Analex(input);
         CommonTokenStream tokens = new CommonTokenStream(analex);
         Anasint anasint = new Anasint(tokens);
-        ParseTree tree = anasint.sentencia();
+        ParseTree tree = anasint.programa();
         JFrame frame = new JFrame("Árbol de Análisis");
         JPanel panel = new JPanel();
         TreeViewer viewr = new TreeViewer(Arrays.asList(
