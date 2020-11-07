@@ -10,7 +10,8 @@ lista_variables : IDENT COMA lista_variables
     | IDENT DP tipo PyC
     ;
 
-tipo : SEQ PA tipo PC //al ser recursivo se podría dar el caso de una secuencia dentro de una secuencia?
+tipo : SEQ_NUM
+    | SEQ_LOG
     |NUM
     |LOG
     ;
@@ -62,7 +63,7 @@ expresion_no_elemental : IDENT CA secuencia CC
     ;
 
 secuencia: expresion_entera (COMA expresion_entera)*
-    |expresion_logica
+    |expresion_logica (COMA expresion_logica)*
     ;
 
 // Instrucciones: iteracion
