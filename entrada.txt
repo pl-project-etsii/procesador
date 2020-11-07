@@ -1,6 +1,6 @@
 PROGRAMA
 VARIABLES
-x: SEQ (NUM);
+x: SEQ(NUM);
 
 SUBPROGRAMAS
 mostrar(x)

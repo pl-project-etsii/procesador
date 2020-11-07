@@ -21,14 +21,23 @@ declaracion: variables instrucciones;
 
 subprogramas : SUBPROGRAMAS (funciones)* (procedimientos)*;
 
-funciones: FUNCION IDENT(PA tipo IDENT(COMA tipo IDENT)* PC)? DEV (PA tipo IDENT(COMA tipo IDENT)* PC)
-            declaracion
-            FFUNCION;
+funciones: predicado
+           | FUNCION IDENT(PA tipo IDENT(COMA tipo IDENT)* PC)? DEV (PA tipo IDENT(COMA tipo IDENT)* PC)
+             declaracion
+             FFUNCION
+           | IDENT(PA expresion PC)?
+           | ULTIMAPOSICION(PA secuencia PC);
+
+predicado: FUNCION IDENT(PA tipo IDENT(COMA tipo IDENT)* PC)? DEV (PA LOG IDENT) PC
+           declaracion
+           FFUNCION
+           ;
 
 procedimientos: PROCEDIMIENTO IDENT(PA tipo IDENT(COMA tipo IDENT)* PC)
                 declaracion
                 FPROCEDIMIENTO
-                | MOSTRAR PA IDENT PC;
+                | MOSTRAR PA IDENT PC
+                | IDENT(PA expresion PC)?;
 
 //INSTRUCCIONES
 //Hay que añadir en instruccion los tipos de instrucciones disponibles
@@ -36,7 +45,8 @@ instrucciones: INSTRUCCIONES instruccion*;
 instruccion: iteracion
            | asignacion
            | condicional
-           | devolucion;
+           | devolucion
+           | llamada;
 
 // Instrucciones: asignación
 asignacion : IDENT (COMA IDENT)* IGUAL expresion (COMA expresion)* PyC;
@@ -50,6 +60,7 @@ funcion_entera: POR
 
 expresion_entera : PA expresion_entera PC
     | expresion_entera (funcion_entera expresion_entera)+
+    | llamada
     | NUMERO
     | IDENT
     ;
@@ -92,3 +103,7 @@ relacion_binaria: MAYORIGUAL|MENORIGUAL|MAYOR|MENOR|IGUALDAD|DISTINTO;
 //Instrucciones: devolución
 devolucion: DEV (IDENT)(COMA IDENT)* PyC
             | DEV (TRUE|FALSE) PyC;
+
+//Instrucciones: llamada
+llamada: funciones
+       | procedimientos;
