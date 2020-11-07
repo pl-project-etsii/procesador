@@ -31,22 +31,28 @@ funciones: predicado
 predicado: FUNCION IDENT(PA tipo IDENT(COMA tipo IDENT)* PC)? DEV (PA LOG IDENT) PC
            declaracion
            FFUNCION
+           | VACIA(PA secuencia PC)
            ;
 
 procedimientos: PROCEDIMIENTO IDENT(PA tipo IDENT(COMA tipo IDENT)* PC)
                 declaracion
                 FPROCEDIMIENTO
-                | MOSTRAR PA IDENT PC
-                | IDENT(PA expresion PC)?;
+                | IDENT(PA expresion PC)?
+                | mostrar
+                ;
 
 //INSTRUCCIONES
 //Hay que añadir en instruccion los tipos de instrucciones disponibles
 instrucciones: INSTRUCCIONES instruccion*;
-instruccion: iteracion
+instruccion: ruptura
+           | iteracion
            | asignacion
            | condicional
            | devolucion
-           | llamada;
+           | llamada_funcion
+           | llamada_procedimiento
+           | mostrar
+           ;
 
 // Instrucciones: asignación
 asignacion : IDENT (COMA IDENT)* IGUAL expresion (COMA expresion)* PyC;
@@ -60,9 +66,10 @@ funcion_entera: POR
 
 expresion_entera : PA expresion_entera PC
     | expresion_entera (funcion_entera expresion_entera)+
-    | llamada
     | NUMERO
     | IDENT
+    | llamada_funcion
+    | llamada_procedimiento
     ;
 
 expresion_logica : TRUE
@@ -78,7 +85,7 @@ secuencia: expresion_entera (COMA expresion_entera)*
     ;
 
 // Instrucciones: iteracion
-iteracion:  MIENTRAS PA expresion_logica PC HACER
+iteracion:  MIENTRAS PA condicion PC HACER
     | BA iteracion* BC
     | FMIENTRAS
     ;
@@ -104,6 +111,13 @@ relacion_binaria: MAYORIGUAL|MENORIGUAL|MAYOR|MENOR|IGUALDAD|DISTINTO;
 devolucion: DEV (IDENT)(COMA IDENT)* PyC
             | DEV (TRUE|FALSE) PyC;
 
-//Instrucciones: llamada
-llamada: funciones
-       | procedimientos;
+//Instrucciones: llamadas
+llamada_funcion: funciones;
+
+llamada_procedimiento: funciones;
+
+//Instrucciones: ruptura
+ruptura: RUPTURA;
+
+//Instrucciones: mostrar
+mostrar: MOSTRAR;

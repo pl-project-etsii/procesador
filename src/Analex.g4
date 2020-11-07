@@ -15,11 +15,10 @@ PROCEDIMIENTO: 'PROCEDIMIENTO';
 FPROCEDIMIENTO: 'FPROCEDIMIENTO';
 FUNCION: 'FUNCION';
 FFUNCION: 'FFUNCION';
-
+RUPTURA: 'ruptura';
 MOSTRAR: 'mostrar';
 ULTIMAPOSICION: 'ultima_posicion';
 VACIA: 'vacia';
-
 DEV: 'dev';
 LOG: 'LOG';
 SEQ_NUM: 'SEQ(NUM)';
@@ -35,9 +34,9 @@ FALSO : 'falso';
 FINSI : 'fsi';
 TRUE : 'T';
 FALSE : 'F';
+POR: '*';
 MAS: '+';
 MENOS: '-';
-POR: '*';
 NUMERO : ('-')?DIGITO+;
 IDENT : LETRA(LETRA|DIGITO|'_')*;
 MAYOR : '>' ;
