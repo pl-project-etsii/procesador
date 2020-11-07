@@ -1,25 +1,37 @@
-//Tipos de variables
+// El programa P se estructura en 3 secciones: una dedicada a la declaración de variables (sección VARIABLES), otra dedicada
+//            a la declaración de subprogramas (sección SUBPROGRAMAS) y otra dedicada al uso de variables y subprogramas (sección
+//            INSTRUCCIONES).
+
+//VARIABLES:
+
+//Tipos de variables:
 TIPO:SEQ(NUM) //Secuencia de enteros que admite valor vacio []
 	| SEQ(LOG) //Secuencia de valores logicos o booleanos que admite valor vacio[]
 	| NUM //tipo entero (1,2,3...)
 	| LOG //tipo logico o booleano con valores (T y F)
-//Los tipos de las variables no permimten ser cambiados
-//Para acceder a un elemento de una secuencia lo hacemos mediante corchetes[] (s[i]. Siendo i cualquier valor entero.
-//Acceder a una posicion inexistente en una secuencia devuelve error
-//El primer elemento de una secuencia se encuentra en la posicion 0. (s[0] )
 
-//SUBPROGRAMAS
-//Ha sido necesario crear esto porque si en las funciones llamáramos a sentencia, habría un problema con los subprogramas,
-//ya que sería necesario escribir la palabra reservada SUBPROGRAMAS.
+//      Los tipos de las variables no permimten ser cambiados
+//      Para acceder a un elemento de una secuencia lo hacemos mediante corchetes[] (s[i]. Siendo i cualquier valor entero.
+//      Acceder a una posicion inexistente en una secuencia devuelve error
+//      El primer elemento de una secuencia se encuentra en la posicion 0. (s[0] )
+
+//SUBPROGRAMAS:
+//      Ha sido necesario crear esto porque si en las funciones llamáramos a sentencia, habría un problema con los subprogramas,
+//      ya que sería necesario escribir la palabra reservada SUBPROGRAMAS.
+
 declaracion: variables instrucciones;
 
 subprogramas : SUBPROGRAMAS (funciones)* (procedimientos)*;
 
-//Está hecho de forma que la función puede recibir varios parámetros de entrada (o ninguno) y puede devolver un conjunto no vacío de parámetros de salida.
+//      Está hecho de forma que la función puede recibir varios parámetros de entrada (o ninguno)
+//      y puede devolver un conjunto no vacío de parámetros de salida.
+
 funciones: FUNCION IDENT(PA tipo IDENT(COMA tipo IDENT)* PC)? DEV (PA tipo IDENT(COMA tipo IDENT)* PC) 
             declaracion
             FFUNCION;
-//Los procedimientos pueden recibir varios parámetros de entrada (o ninguno) pero no tiene devolución explícita.
+
+//      Los procedimientos pueden recibir varios parámetros de entrada (o ninguno) pero no tiene devolución explícita.
+
 procedimientos: PROCEDIMIENTO IDENT(PA tipo IDENT(COMA tipo IDENT)* PC)
                 declaracion
                 FPROCEDIMIENTO;
@@ -30,15 +42,16 @@ instruccion: asignacion
 	| condicional
 	//FALTA EL RESTO DE INSTRUCCIONES
 
-//La declaracion de una variable no asigna valor a esta, para eso definimos una instruccion asignación
+//      La declaracion de una variable no asigna valor a esta, para eso definimos una instruccion asignación
 asignacion : IDENT (COMA IDENT)* IGUAL expresion (COMA expresion)* PyC;
-//Aqui estamos contemplando tanto una asignación simple como múltiple (asignacion -> x = 3) o (asignacion -> x,y = 2,3)
 
-//Para los tipos NUM y LOG y SEQ() tenemos expresiones enteras, logicas y no elementales respectivamente
-//Para las expresiones enteras definimos las funciones enteras que son las operaciones que podemos realizar con el tipo NUM
-//Para el tipo LOG no se define ningun tipo de función/operación.
-//Para el tipo SEQ() se definen 2 operaciones: vacía y ultima_posicion
-//No se pueden combinar expresiones de distintos tipos
+//      Se contempla tanto una asignación simple como múltiple (asignacion -> x = 3) o (asignacion -> x,y = 2,3)
+
+//      Para los tipos NUM y LOG y SEQ() tenemos expresiones enteras, logicas y no elementales respectivamente
+//      Para las expresiones enteras definimos las funciones enteras que son las operaciones que podemos realizar con el tipo NUM
+//      Para el tipo LOG no se define ningun tipo de función/operación.
+//      Para el tipo SEQ() se definen 2 operaciones: vacía y ultima_posicion
+//      No se pueden combinar expresiones de distintos tipos
 
 expresion : expresion_no_elemental | expresion_entera | expresion_logica ;
 
@@ -71,7 +84,7 @@ funcion_vacia: ??? //comprueba si la secuencia esta vacía []
 funcion_ultima_posicion: ??? //devuelve la ultima posicion de una secuencia(que no este vacía)
 
 // Instrucciones: iteracion
-//Hablar de la funcion de avance ?
+
 iteracion:  MIENTRAS PA expresion_logica PC HACER
     | BA iteracion* BC
     | FMIENTRAS
