@@ -112,10 +112,10 @@ devolucion: DEV (IDENT)(COMA IDENT)* PyC
 //Instrucciones: llamadas
 llamada_funcion: funciones;
 
-llamada_procedimiento: funciones;
+llamada_procedimiento: procedimientos;
 
 //Instrucciones: ruptura
-ruptura: RUPTURA;
+ruptura: RUPTURA PyC;
 
 //Instrucciones: mostrar
-mostrar: MOSTRAR;
+mostrar: MOSTRAR PA IDENT PC PyC;

@@ -1,11 +1,13 @@
 PROGRAMA
 VARIABLES
 SUBPROGRAMAS
-FUNCION
-bucle_1_avance(SEQ seq, NUM pos) dev (NUM r)
+FUNCION mayor_que_5(NUM x) dev (LOG r)
 VARIABLES
 INSTRUCCIONES
-r=ultima_posicion(s)-i;
-dev r;
+si (x>5) entonces
+dev T;
+sino
+dev F;
+fsi
 FFUNCION
 INSTRUCCIONES
