@@ -16,7 +16,7 @@ TIPO: SEQ(NUM)  //Secuencia de enteros que admite valor vacio []
 	| LOG       //tipo logico o booleano con valores (T y F)
 
 Características de los tipos:
-- Los tipos de las variables no permimten ser cambiados
+- Los tipos de las variables no permiten ser cambiados
 - Para acceder a un elemento de una secuencia lo hacemos mediante corchetes[] (s[i]. Siendo i cualquier valor entero.
 - Acceder a una posicion inexistente en una secuencia devuelve error
 - El primer elemento de una secuencia se encuentra en la posicion 0. (s[0] )

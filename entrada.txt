@@ -1,25 +1,11 @@
 PROGRAMA
 VARIABLES
-a: NUM;
-s: SEQ(NUM);
-i: NUM;
-max: NUM;
 SUBPROGRAMAS
-//pre: cierto
-//post: max es el elemento maximo de s e i es la posición en la que
-// se encuentra.
-PROCEDIMIENTO mayor(SEQ(NUM) s, NUM i, NUM max)
+FUNCION
+bucle_1_avance(SEQ seq, NUM pos) dev (NUM r)
 VARIABLES
-j: NUM;
 INSTRUCCIONES
-j=0;
-max=s[j];
-mientras(j<=ultima_posicion(s)) hacer
-si (s[j]>max) entonces
-max=s[j];
-i=j;
-fsi
-j=j+1;
-fmientras
-FPROCEDIMIENTO
+r=ultima_posicion(s)-i;
+dev r;
+FFUNCION
 INSTRUCCIONES

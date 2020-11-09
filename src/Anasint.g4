@@ -10,8 +10,7 @@ lista_variables : IDENT COMA lista_variables
     | IDENT DP tipo PyC
     ;
 
-tipo : SEQ_NUM
-    | SEQ_LOG
+tipo : SEQ (PA NUM PC|PA LOG PC)*
     |NUM
     |LOG
     ;
@@ -21,7 +20,7 @@ declaracion: variables instrucciones;
 
 subprogramas : SUBPROGRAMAS (funciones)* (procedimientos)*;
 
-funciones: predicado
+funciones:   predicado
            | FUNCION IDENT(PA tipo IDENT(COMA tipo IDENT)* PC)? DEV (PA tipo IDENT(COMA tipo IDENT)* PC)
              declaracion
              FFUNCION
@@ -69,7 +68,6 @@ expresion_entera : PA expresion_entera PC
     | NUMERO
     | IDENT
     | llamada_funcion
-    | llamada_procedimiento
     ;
 
 expresion_logica : TRUE
