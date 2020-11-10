@@ -1,0 +1,151 @@
+El programa P se estructura en 3 secciones:
+    - sección VARIABLES: dedicada a la declaración de variables.
+    - sección SUBPROGRAMAS: dedicada a la declaración de subprogramas.
+    - sección INSTRUCCIONES: dedicada al uso de variables y subprogramas.
+
+######################################################
+sección VARIABLES
+######################################################
+
+Tipos de variables:
+
+TIPO: SEQ(NUM)  //Secuencia de enteros que admite valor vacio []
+	| SEQ(LOG)  //Secuencia de valores logicos o booleanos que admite valor vacio[]
+	| NUM       //tipo entero (1,2,3...)
+	| LOG       //tipo logico o booleano con valores (T y F)
+    ;
+
+Características de los tipos:
+    - Los tipos de las variables no son inmutables (no pueden cambiar).
+    - Para acceder a un elemento de una secuencia lo hacemos mediante corchetes[] (s[i]. Siendo i cualquier valor entero).
+    - Acceder a una posicion inexistente en una secuencia devuelve error.
+    - El primer elemento de una secuencia se encuentra en la posicion 0. (s[0] )
+
+######################################################
+sección SUBPROGRAMAS: FUNCIONES Y PROCEDIMIENTOS
+######################################################
+
+Si en las funciones llamáramos a sentencia, habría un problema con los subprogramas,
+ya que sería necesario escribir la palabra reservada SUBPROGRAMAS.
+
+Dentro de cada subprograma (es decir, cada funcion o cada procedimiento) se declararán variables e intrucciones:
+
+declaracion: variables instrucciones;
+subprogramas : SUBPROGRAMAS (funciones)* (procedimientos)*;
+
+La FUNCION puede recibir varios parámetros de entrada (o ninguno) y puede devolver un conjunto no vacío de parámetros de salida.
+
+funciones: FUNCION IDENT(PA tipo IDENT(COMA tipo IDENT)* PC)? DEV (PA tipo IDENT(COMA tipo IDENT)* PC) 
+            declaracion
+            FFUNCION;
+
+Los PROCEDIMIENTOS pueden recibir varios parámetros de entrada (o ninguno) pero no tiene devolución explícita.
+
+procedimientos: PROCEDIMIENTO IDENT(PA tipo IDENT(COMA tipo IDENT)* PC)
+                declaracion
+                FPROCEDIMIENTO;
+
+####################################################
+sección INSTRUCCIONES
+####################################################
+
+Tipos de instrucciones en el lenguaje P:
+    - Asignación
+    - Condicional
+    - Iteracion
+    - Ruptura
+    - Devolución
+    - Mostrar
+
+instruccion: asignacion
+	| iteracion
+	| condicional
+	| ruptura
+	| devolución
+	| llamada
+	| muestra
+	;
+
+
+1. ASIGNACION: la declaracion de una variable no asigna valor a esta, para eso definimos una instruccion asignación.
+Se contempla tanto una asignación simple como múltiple (asignacion -> x = 3) o (asignacion -> x,y = 2,3)
+
+asignacion : IDENT (COMA IDENT)* IGUAL expresion (COMA expresion)* PyC;
+
+
+2. ITERACION:
+
+iteracion:  MIENTRAS PA expresion_logica PC HACER
+    | BA iteracion* BC
+    | FMIENTRAS
+    ;
+
+
+3. CONDICIONAL: se trata de un bloque de instrucciones que depende del valor de una condicion
+
+condicional: SI PA condicion PC ENTONCES
+                instruccion*
+             SINO?
+                instruccion*
+             FINSI
+             ;
+condicion: NEGACION condicion
+         | condicion Y condicion
+         | condicion O condicion
+         | expresion relacion_binaria expresion
+         ;
+
+Definimos la relacion de las expresiones como una realacion binaria que contempla las siguientes posibilidades
+
+relacion_binaria: MAYORIGUAL|MENORIGUAL|MAYOR|MENOR|IGUALDAD|DISTINTO;
+
+4.DEVOLUCIÓN:
+devolucion: DEV (IDENT)(COMA IDENT)* PyC
+           | DEV (TRUE|FALSE) PyC
+           ;
+
+
+######################################
+FUNCIONES PREDEFINIDAS EN P
+######################################
+
+EXPRESIONES PARA LOS DIFERENTES TIPOS:
+- Para los tipos NUM y LOG y SEQ() tenemos expresiones enteras, logicas y no elementales respectivamente
+- Para las expresiones enteras definimos las funciones enteras que son las operaciones que podemos realizar con el tipo NUM
+- Para el tipo LOG no se define ningun tipo de función/operación.
+- Para el tipo SEQ() se definen 2 operaciones: vacía y ultima_posicion
+- No se pueden combinar expresiones de distintos tipos
+
+
+expresion : expresion_no_elemental | expresion_entera | expresion_logica ;
+
+funcion_entera: POR (Mayor prioridad)
+    | MAS
+    | MENOS
+    ;
+
+expresion_entera : PA expresion_entera PC
+    | expresion_entera (funcion_entera expresion_entera)+
+    | NUMERO
+    | IDENT
+    ;
+
+expresion_logica : TRUE
+    | FALSE
+    | IDENT
+    ;
+
+expresion_no_elemental : CA (secuencia)? CC //funcion vacia?
+    | IDENT
+    ;
+
+secuencia: expresion_entera (COMA expresion_entera)*
+    |expresion_logica (COMA expresion_logica)*
+    ;
+
+
+FUNCION VACIA: comprueba si la secuencia esta vacía []
+funcion_vacia: (no compete al analizador lexico/sintactico)
+
+FUNCION ULTIMA_POSICION: devuelve la ultima posicion de una secuencia (que no este vacía)
+funcion_ultima_posicion: (no compete al analizador lexico/sintactico)
