@@ -38,12 +38,17 @@ La FUNCION puede recibir varios parámetros de entrada (o ninguno) y puede devol
 funciones: FUNCION IDENT(PA tipo IDENT(COMA tipo IDENT)* PC)? DEV (PA tipo IDENT(COMA tipo IDENT)* PC) 
             declaracion
             FFUNCION;
+            | VACIA(PA secuencia PC)
+            ;
 
 Los PROCEDIMIENTOS pueden recibir varios parámetros de entrada (o ninguno) pero no tiene devolución explícita.
 
 procedimientos: PROCEDIMIENTO IDENT(PA tipo IDENT(COMA tipo IDENT)* PC)
                 declaracion
                 FPROCEDIMIENTO;
+                | IDENT(PA expresion PC)?
+                | mostrar
+                ;
 
 ####################################################
 sección INSTRUCCIONES
@@ -67,13 +72,14 @@ instruccion: asignacion
 	;
 
 
-1. ASIGNACION: la declaracion de una variable no asigna valor a esta, para eso definimos una instruccion asignación.
-Se contempla tanto una asignación simple como múltiple (asignacion -> x = 3) o (asignacion -> x,y = 2,3)
+1. ASIGNACION: La declaracion de una variable no asigna valor a esta, para eso definimos una instruccion asignación.
+               Se contempla tanto una asignación simple como múltiple (asignacion -> x = 3) o (asignacion -> x,y = 2,3)
 
 asignacion : IDENT (COMA IDENT)* IGUAL expresion (COMA expresion)* PyC;
 
 
-2. ITERACION:
+2. ITERACION: Define un bloque de instrucciones con una condición al principio.
+              La ejecución del bloque se repite hasta que la condición sea falsa.
 
 iteracion:  MIENTRAS PA expresion_logica PC HACER
     | BA iteracion* BC
@@ -81,7 +87,7 @@ iteracion:  MIENTRAS PA expresion_logica PC HACER
     ;
 
 
-3. CONDICIONAL: se trata de un bloque de instrucciones que depende del valor de una condicion
+3. CONDICIONAL: Se trata de un bloque de instrucciones que depende del valor de una condicion
 
 condicional: SI PA condicion PC ENTONCES
                 instruccion*
@@ -93,6 +99,8 @@ condicion: NEGACION condicion
          | condicion Y condicion
          | condicion O condicion
          | expresion relacion_binaria expresion
+         | CIERTO
+         | FALSO
          ;
 
 Definimos la relacion de las expresiones como una realacion binaria que contempla las siguientes posibilidades
@@ -104,6 +112,11 @@ devolucion: DEV (IDENT)(COMA IDENT)* PyC
            | DEV (TRUE|FALSE) PyC
            ;
 
+5.RUPTURA: Su ejecución lleva al programa fuera del bloque en el que está localizada la ruptura.
+ruptura: RUPTURA PyC;
+
+6.MOSTRAR: Se encarga de mostrar por consola los valores de una lista de variables
+mostrar: MOSTRAR PA IDENT PC PyC;
 
 ######################################
 FUNCIONES PREDEFINIDAS EN P
