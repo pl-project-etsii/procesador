@@ -60,6 +60,7 @@ Tipos de instrucciones en el lenguaje P:
     - Iteracion
     - Ruptura
     - Devolución
+    - Llamada
     - Mostrar
 
 instruccion: asignacion
