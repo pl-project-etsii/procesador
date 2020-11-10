@@ -41,7 +41,6 @@ procedimientos: PROCEDIMIENTO IDENT(PA tipo IDENT(COMA tipo IDENT)* PC)
                 ;
 
 //INSTRUCCIONES
-//Hay que añadir en instruccion los tipos de instrucciones disponibles
 instrucciones: INSTRUCCIONES instruccion*;
 instruccion: ruptura
            | iteracion
