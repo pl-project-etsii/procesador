@@ -1,0 +1,7 @@
+ESPECIFICACION DEL INTERPRET
+-----------------------------------------------
+
+OBJETIVO: construir un interprete del lenguaje P.
+
+DECISIONES DE DISEÑO:
+1.-
