@@ -73,8 +73,8 @@ expresion_logica : TRUE
     | FALSE
     ;
 
-expresion_no_elemental : IDENT CA secuencia CC
-    | IDENT CA CC
+expresion_no_elemental : CA secuencia CC
+    | CA CC
     ;
 
 secuencia: expresion_entera (COMA expresion_entera)*
