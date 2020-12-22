@@ -24,4 +24,36 @@ tipo :  t=SEQ PA NUM PC
         |t=NUM
         |t=LOG
         ;
+##########################################################3
 
+DECISION DE DISEÑO 2: Calculo del tipo de una expresion
+
+----------------------------------------
+(funcion tipo_op_aritmetica(t1, t2)
+                si t1 o t2 igual no tipo entonces
+                    tipo = no tipo
+                sino
+                    si t1 y t2 igual NUM entonces
+                        tipo = NUM
+                    sino
+                        tipo = no tipo)
+-----------------------------------------
+(funcion tipo_op_booleana(t1,t2)
+                si t1 o t2 igual no tipo entonces
+                    tipo = no tipo
+                sino
+                    si t1 y t2 igual LOG entonces
+                        tipo = LOG
+                    sino
+                        tipo = no tipo)
+-----------------------------------------
+(funcion tipo_seq_elems(tipos)
+                si elemento en tipos igual a no tipo
+                    tipo = no tipo
+                sino
+                    si todos elementos en tipos igual a NUM entonces
+                        tipo = SEQ PA NUM PC
+                    si todos elementos en tipos igual a LOG entonces
+                        tipo = SEQ PA LOG PC
+                    sino
+                        tipo = no tipo)
