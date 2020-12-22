@@ -1,0 +1,27 @@
+DECISION DE DISEÑO 1: Para saber si una asignacion esta bien tipada almacenamos
+                      la variable y su tipo al procesar la declaracion de variables.
+
+(almacen variables)         variable    | tipo
+                       ----------------------------------
+                             i          | NUM
+                             mx         | SEQ(NUM)
+                             s          | LOG
+                             d          | SEQ(LOG)
+
+programa : PROGRAMA f=variables{almacenar f en almacen de variables} subprogramas instrucciones EOF
+
+(parametro de salida f)
+variables : VARIABLES d=lista_variables* {almacenar d en f};
+
+(parametro de salida d y v)
+lista_variables : v=IDENT COMA lista_variables
+    | v=IDENT DP t=tipo PyC {almacenar en d cada v con tipo t}
+    ;
+
+(parametro de salida t)
+tipo :  t=SEQ PA NUM PC
+        |t=SEQ PA LOG PC
+        |t=NUM
+        |t=LOG
+        ;
+
