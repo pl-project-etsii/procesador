@@ -3,7 +3,7 @@ DECISION DE DISEÑO 1: Para saber si una asignacion esta bien tipada almacenamos
 
 (almacen variables)         variable    | tipo
                        ----------------------------------
-                             i          | NUM
+                             i,o        | NUM
                              mx         | SEQ(NUM)
                              s          | LOG
                              d          | SEQ(LOG)
@@ -13,9 +13,9 @@ programa : PROGRAMA f=variables{almacenar f en almacen de variables} subprograma
 (parametro de salida f)
 variables : VARIABLES d=lista_variables* {almacenar d en f};
 
-(parametro de salida d y v)
-lista_variables : v=IDENT COMA lista_variables
-    | v=IDENT DP t=tipo PyC {almacenar en d cada v con tipo t}
+(parametro de salida d)
+lista_variables : IDENT{incluir IDENT en v} COMA s=lista_variables{incluir s en v}
+    | IDENT{incluir IDENT en v} DP t=tipo PyC {almacenar en d cada v con tipo t}
     ;
 
 (parametro de salida t)
